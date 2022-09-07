@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import { useState, useEffect } from "react";
+import Pokemons from "./components/Pokemons";
+import Pokemon from "./components/Pokemon";
+import Info from "./components/Info";
 
-function App() {
+const App = () => {
+
+  const [pokemons, setPokemons] = useState([]);
+
+  useEffect(() => {
+    const fetchPokemons = async () => {
+      const res = await fetch("https://pokemonserver.onrender.com/pokemon");
+      const result = await res.json();
+      console.log(result);
+      setPokemons(result);
+    };
+    fetchPokemons();
+  }, []);
+    
+  
+  /* <Route path="/" element={<Instructions />} /> */
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+        <Route path="/" element={<Pokemons myPokemons={pokemons} />} />
+        <Route path="pokemon/:id" element={<Pokemon pokemonInfo={pokemons} />} />
+        <Route path="pokemon/:id/:info" element={<Info detailedInfo={pokemons} />} />
+      </Routes>
+      {/*console.log(pokemons)*/}
     </div>
   );
-}
+
+
+
+};
+
 
 export default App;
