@@ -11,3 +11,58 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Here Start Pokemon Styles */
+.container {
+  margin: 0 auto;
+  padding: 5rem;
+}
+
+.logo  {
+  max-width: 400px;
+  margin-bottom: 2rem;
+}
+
+.list-group-item:hover {
+  background: #eee;
+}
+
+.pokeList .list-group-item::before {
+  content: "";
+  background-image: url('https://www.freepnglogos.com/uploads/pokemon-symbol-logo-png-31.png');
+  background-size: 15px 15px;
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  margin-right: 5px;
+}
+
+.pokeInformation .list-group-item::before {
+  content: "";
+  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1YGtfDXjKMGriIXt9Ehf15cT3vJtCnGTlxQ&usqp=CAU');
+  background-size: 15px 15px;
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  margin-right: 5px;
+}
+
+.list-group a {
+  text-decoration: none!important;
+}
+
+.addPokemonBtn {
+  float: right;
+  margin-top: -3px;
+}
+
+.cage {
+  position: fixed;
+  width: 250px;
+  height: 150px;
+  background: #eee;
+  border-radius: 10px;
+  right: 0;
+  bottom: -7px;
+  padding: 2rem;
+}

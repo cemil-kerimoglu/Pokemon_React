@@ -1,6 +1,12 @@
 import React from "react";
 import { Link, Outlet, useParams } from "react-router-dom";
 
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import ListGroup from 'react-bootstrap/ListGroup';
+
+
 const Pokemon = ({ pokemonInfo }) => {
   // we destructure the params memberName from the object return from the useParams hook
   const { id } = useParams();
@@ -12,23 +18,29 @@ const Pokemon = ({ pokemonInfo }) => {
   console.log(pokemonOfInterest);
   const { name, type, base } = pokemonOfInterest;
   return (
-    <div>
-      <h2>
-        Information About The Pokemon {name.english}
-      </h2>
-      <ul>
-        <Link key={id} to="name">
-          <li>Names</li>
-        </Link>
-        <Link key={id} to="type">
-          <li>Types</li>
-        </Link>
-        <Link key={id} to="base">
-          <li>Bases</li>
-        </Link>
-      </ul>
-      <Outlet />
-    </div>
+    <Container>
+      <Row>
+        <Col>
+        <div>
+          <h2>
+            Information about this Pokemon {name.english}
+          </h2>
+          <ListGroup className="pokeInformation">
+            <Link key={id} to="name">
+              <ListGroup.Item>Names</ListGroup.Item>
+            </Link>
+            <Link key={id} to="type">
+              <ListGroup.Item>Types</ListGroup.Item>
+            </Link>
+            <Link key={id} to="base">
+              <ListGroup.Item>Bases</ListGroup.Item>
+            </Link>
+          </ListGroup>
+          <Outlet />
+        </div>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

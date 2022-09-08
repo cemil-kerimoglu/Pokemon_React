@@ -1,6 +1,11 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import ListGroup from 'react-bootstrap/ListGroup';
+
 const Info = ({ detailedInfo }) => {
   // we destructure the params memberName from the object return from the useParams hook
   const { id, info } = useParams();
@@ -15,16 +20,25 @@ const Info = ({ detailedInfo }) => {
 
   if(info === 'name') {
     return (
-        <div>
-            <ul>
-                { Object.keys(infoOfInterest).map(key => {
-                    return (
-                        <li>{`Name in ${key.charAt(0).toUpperCase() + key.slice(1)}: ${infoOfInterest[key]}`}</li>
-                    );
-                }) }
-            </ul>
-        </div>
-    );   
+      <Container>
+        <Row>
+          <Col>
+          <div>
+            <h2>
+              {info}-details about this Pokemon
+            </h2>
+              <ListGroup className="pokeDetails">
+                  { Object.keys(infoOfInterest).map(key => {
+                      return (
+                          <ListGroup.Item>{`Name in ${key.charAt(0).toUpperCase() + key.slice(1)}: ${infoOfInterest[key]}`}</ListGroup.Item>
+                      );
+                  }) }
+              </ListGroup>
+          </div>
+          </Col>
+        </Row>
+    </Container>
+    );
   } else if(info === 'type') {
         return (
             <div>
@@ -53,7 +67,7 @@ const Info = ({ detailedInfo }) => {
         )
     }
 
-  
+
 };
 
 export default Info;
